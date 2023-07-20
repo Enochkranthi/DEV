@@ -34,7 +34,7 @@ stages:
             scriptLocation: inlineScript
             inlineScript: 'az extension update --name azure-cli-ml'
         - task: AzureCLI@2
-          displayName: 'Check and create Azure ML workspace'
+          displayName: 'Check and create Azure ML Resource Group'
           inputs:
             azureSubscription: Azure service connection
             scriptType: bash
@@ -47,6 +47,22 @@ stages:
                   az group create --name $(azureml.resourceGroup) --location $(azureml.location)
                 else
                   echo "Resource group already exists."
-                fi;
+                fi
+        - task: AzureCLI@2
+          displayName: 'Check and create Azure ML Workspace'
+          inputs:
+            azureSubscription: Azure service connection
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: |
+                WORKSPACE_EXISTS=$(az ml workspace list --resource-group $(azureml.resourceGroup) --query "[?name=='$(azureml.workspaceName)'].name" -o tsv)
+                echo $WORKSPACE_EXISTS
+                if [ -z "$WORKSPACE_EXISTS" ]; then
+                  echo "Azure ML workspace does not exist. Creating one..."                  
+                  az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location)
+                else
+                  echo "Resource group already exists."
+                fi
+
               
             
