@@ -27,11 +27,17 @@ stages:
             scriptLocation: inlineScript
             inlineScript: 'az extension add -n azure-cli-ml'
         - task: AzureCLI@2
-          displayName: 'Install Azure ML CLI '
+          displayName: 'Update Azure ML CLI '
           inputs:
             azureSubscription: Azure service connection
             scriptType: bash
             scriptLocation: inlineScript
             inlineScript: 'az extension update --name azure-cli-ml'
-        
+        - task: AzureCLI@2
+          displayName: 'Check and create Azure ML workspace'
+          inputs:
+            azureSubscription: serviceconnection
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: 'az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location) --exist-ok --yes'
           
