@@ -17,5 +17,10 @@ stages:
       - job: CheckAndCreateInfraJob
         displayName: Install command line interfaces
         steps:
-        - script: pip install databricks-cli
+        - script: |
+              pip install databricks-cli             
           displayName: 'Install Databricks cli'
+        - script: |
+              pip install azure-cli
+          displayName: 'Install Azure cli'
+          
