@@ -66,7 +66,7 @@ stages:
                   echo "Resource group already exists."
                 fi
         - task: AzureCLI@2
-          displayName: 'Create Databricks QA Workspace'
+          displayName: 'Create Databricks Dev Workspace'
           inputs:
             azureSubscription: Azure service connection
             scriptType: bash
