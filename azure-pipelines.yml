@@ -41,6 +41,7 @@ stages:
             scriptLocation: inlineScript
             inlineScript: 
                 RESOURCE_GROUP_EXISTS=$(az group exists --name $(azureml.resourceGroup))
+                echo $RESOURCE_GROUP_EXISTS
                 if [ "$RESOURCE_GROUP_EXISTS" == "false" ]; then
                   echo "Resource group does not exist. Creating one..."
                   az group create --name $(azureml.resourceGroup) --location $(azureml.location)
