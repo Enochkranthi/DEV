@@ -21,4 +21,13 @@ steps:
 stages:
   - stage: Int
     displayName: Test
-    
+    jobs:
+      - job: Test Stage
+        displayName: Liddf
+        steps:
+          - checkout: self
+          - script: |
+            echo this is a test line
+          name: Kranthi
+          displayName: Kranthi line
+
