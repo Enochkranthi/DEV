@@ -21,4 +21,4 @@ stages:
           - script: |
               echo this a test line
             name: LintBicepCode
-            displayName: Install Azure cli
+            displayName: Run Bicep Linter
