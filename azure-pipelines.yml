@@ -56,7 +56,9 @@ stages:
             scriptLocation: inlineScript
             inlineScript: |
                 WORKSPACE_EXISTS=$(az ml workspace list --resource-group $(azureml.resourceGroup) --query "[?name=='$(azureml.workspaceName)'].name" -o tsv)
+                echo "test1"
                 echo $WORKSPACE_EXISTS
+                echo "test2"
                 if [ -z "$WORKSPACE_EXISTS" ]; then
                   echo "Azure ML workspace does not exist. Creating one..."                  
                   az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location)
