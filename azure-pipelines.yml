@@ -15,10 +15,7 @@ stages:
     displayName: Install Azure cli
     jobs:
       - job: CheckAndCreateInfraJob
-        displayName: Lint Bicep Code
+        displayName: Install command line interfaces
         steps:
-          - checkout: self
-          - script: |
-              echo this a test line
-            name: LintBicepCode
-            displayName: Install Azure cli
+        - script: pip install databricks-cli
+          displayName: 'Install Databricks cli'
