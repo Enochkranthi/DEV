@@ -39,7 +39,7 @@ stages:
             azureSubscription: Azure service connection
             scriptType: bash
             scriptLocation: inlineScript
-            inlineScript: 
+            inlineScript: |
                 RESOURCE_GROUP_EXISTS=$(az group exists --name $(azureml.resourceGroup))
                 echo $RESOURCE_GROUP_EXISTS
                 if [ "$RESOURCE_GROUP_EXISTS" == "false" ]; then
