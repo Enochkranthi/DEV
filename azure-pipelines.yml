@@ -20,7 +20,12 @@ stages:
         - script: |
               pip install databricks-cli             
           displayName: 'Install Databricks cli'
-        - script: |
-              pip install azure-cli
-          displayName: 'Install Azure cli'
+        - task: AzureCLI@2
+          displayName: 'Install Azure ML CLI '
+          inputs:
+            azureSubscription: Azure service connection
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: 'az extension add -n azure-cli-ml'
+        
           
