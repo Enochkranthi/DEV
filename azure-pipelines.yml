@@ -18,16 +18,17 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+
+
 stages:
-  - stage: Int
-    displayName: Test
+  - stage: Lint
+    displayName: Lint and Preflight check
     jobs:
-      - job: Test Stage
-        displayName: Liddf
+      - job: LintBicep
+        displayName: Lint Bicep Code
         steps:
           - checkout: self
           - script: |
-            echo this is a test line
-          name: Kranthi
-          displayName: Kranthi line
-
+              echo this a test line
+            name: LintBicepCode
+            displayName: Run Bicep Linter
