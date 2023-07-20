@@ -11,10 +11,10 @@ pool:
 
 
 stages:
-  - stage: Check Infra
-    displayName: Lint and Preflight check
+  - stage: CheckAndCreateInfra
+    displayName: Check and Create Infrastructure as Code
     jobs:
-      - job: LintBicep
+      - job: CheckAndCreateInfraJob
         displayName: Lint Bicep Code
         steps:
           - checkout: self
