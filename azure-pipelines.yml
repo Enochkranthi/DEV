@@ -43,7 +43,7 @@ stages:
               WORKSPACE_EXISTS=$(az ml workspace show --resource-group $(azureml.resourceGroup) --workspace-name $(azureml.workspaceName) --query "id" -o tsv)
               if [ -z "$WORKSPACE_EXISTS" ]; then
                 echo "Azure ML workspace does not exist. Creating one..."
-                az ml workspace create --resource-group $(azureml.resourceGroup) --name $(azureml.workspaceName) --location $(azureml.location)
+                az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location) 
               else
                 echo "Azure ML workspace already exists."
               fi
