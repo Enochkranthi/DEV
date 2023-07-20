@@ -44,7 +44,7 @@ stages:
                 echo $RESOURCE_GROUP_EXISTS
                 if [ "$RESOURCE_GROUP_EXISTS" == "false" ]; then
                   echo "Resource group does not exist. Creating one..."
-                  az group create --name $(azureml.resourceGroup) --location $(azureml.location)
+                  az group create --name $(azureml.resourceGroup) --location $(azureml.location) --disable-insights
                 else
                   echo "Resource group already exists."
                 fi
