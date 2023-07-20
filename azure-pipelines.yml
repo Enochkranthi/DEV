@@ -55,7 +55,7 @@ stages:
             scriptType: bash
             scriptLocation: inlineScript
             inlineScript: |
-                WORKSPACE_EXISTS=$(az ml workspace show --resource-group $(azureml.resourceGroup)  --name $(azureml.workspaceName) -o json)
+                WORKSPACE_EXISTS=$(az ml workspace show --resource-group $(azureml.resourceGroup) --name $(azureml.workspaceName) -o json)
                 echo "test1"
                 echo $WORKSPACE_EXISTS
                 echo "test2"
