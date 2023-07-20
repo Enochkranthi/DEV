@@ -36,7 +36,7 @@ stages:
         - task: AzureCLI@2
           displayName: 'Check and create Azure ML workspace'
           inputs:
-            azureSubscription: serviceconnection
+            azureSubscription: Azure service connection
             scriptType: bash
             scriptLocation: inlineScript
             inlineScript: 'az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location) --exist-ok --yes'
