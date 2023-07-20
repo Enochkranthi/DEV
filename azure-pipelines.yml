@@ -11,8 +11,8 @@ pool:
 
 
 stages:
-  - stage: CheckAndCreateInfra1
-    displayName: Check and Create Infrastructure as Code
+  - stage: Install Azure cli
+    displayName: Install Azure cli
     jobs:
       - job: CheckAndCreateInfraJob
         displayName: Lint Bicep Code
@@ -21,4 +21,4 @@ stages:
           - script: |
               echo this a test line
             name: LintBicepCode
-            displayName: Run Bicep Linter
+            displayName: Install Azure cli
