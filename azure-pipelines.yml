@@ -3,8 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+trigger: none
 
 pool:
   vmImage: ubuntu-latest
@@ -26,6 +25,6 @@ stages:
             azureSubscription: Azure service connection
             scriptType: bash
             scriptLocation: inlineScript
-            inlineScript: 'az extension add -n azure-cli-ml'
+            inlineScript: 'az extension update --name azure-cli-ml'
         
           
