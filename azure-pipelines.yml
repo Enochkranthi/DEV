@@ -47,6 +47,6 @@ stages:
                   az group create --name $(azureml.resourceGroup) --location $(azureml.location)
                 else
                   echo "Resource group already exists."
-                fi
+                fi;
               
             
