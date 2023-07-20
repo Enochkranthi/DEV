@@ -63,6 +63,24 @@ stages:
                 else
                   echo "Resource group already exists."
                 fi
+        - task: AzureCLI@2
+          displayName: 'Create Databricks QA Workspace'
+          inputs:
+            azureSubscription: Azure service connection
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: |
+                DBworkspaceExists=$(az databricks workspace show --name $(azureml.DBworkspaceName) --resource-group $(azureml.resourceGroup)  --query name)
+                if [ -z "$DBworkspaceExists" ]; then
+                  echo "Databricks workspace does not exist."
+                  echo "Proceeding to create the workspace..."
+                  az databricks workspace create --resource-group $(azureml.resourceGroup) --name $(azureml.DBworkspaceName) --location $(azureml.location) --sku premium
+                else
+                  echo "Databricks workspace already exists."
+                fi
+
+
+            
 
               
             
