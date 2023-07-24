@@ -32,12 +32,13 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
+    echo "test1"
     git clone $(Build.Repository.Uri) -c http.extraheader="Authorization: bearer $(PAT)"
-
+    echo "test2"
     cd $(Build.Repository.Name)
-    
+    echo "test3"
     databricks repos create --provider AzureReposGit --url $(Build.Repository.Uri) --path /Repos/DEV
-
+    echo "test4"
     databricks workspace import_dir . /Repos/DEV
-
+    echo "test5"
     displayName: 'Clone and Import Azure DevOps Repo to Databricks'
