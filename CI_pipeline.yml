@@ -16,7 +16,6 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    az extension add --name databricks
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
@@ -32,5 +31,8 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
-    databricks repos create --name DEV --path $(Build.Repository.Uri)
+    databricks workspace mkdirs DEV
+    git clone $(Build.Repository.Uri)
+    cd AzureMLOps
+    databricks workspace import_dir . DEV
     
