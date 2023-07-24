@@ -32,5 +32,5 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
-    az databricks repos create --name DEV --path $(Build.Repository.Uri)
+    databricks repos create --name DEV --path $(Build.Repository.Uri)
     
