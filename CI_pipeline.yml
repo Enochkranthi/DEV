@@ -88,7 +88,7 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) --asset-path Model/model.pkl -d "Regression" --tag "data"="Salary_prediction" --tag "model"="Regression" --model-framework spark
+      az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) --model-path Model/model.pkl -d "Regression" --tag "data"="Salary_prediction" --tag "model"="Regression" --model-framework spark
 
 - bash: 'mkdir metadata && mkdir Outputs'
   displayName: 'Make Metadata and Output directory'
