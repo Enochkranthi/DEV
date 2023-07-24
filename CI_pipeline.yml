@@ -33,5 +33,5 @@ steps:
 
 - script: |
 
-    databricks repos create --url $(Build.Repository.Uri) --provider azureDevOpsServices --path /Repos/prakashpoorna998@gmail.com/DEV
+    databricks repos create --url https://github.com/Enochkranthi/Learn_Azure-Databricks-MLOps.git --provider gitHub --path /Repos/prakashpoorna998@gmail.com/my-repo
 
