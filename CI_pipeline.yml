@@ -39,12 +39,12 @@ steps:
 - script: |
       json_path=$(Build.SourcesDirectory)/MLOps/dev-cluster.json
       databricks clusters create --json-file "$json_path"
-      cluster_id=$(databricks clusters get --cluster-name Dev_cluster | jq -r '.cluster_id')
+      cluster_id=$(databricks clusters get --cluster-name Small | jq -r '.cluster_id')
   displayName: 'Create Cluster'
 
 - script: |
       while true; do
-        cluster_status=$(databricks clusters get --cluster-name Dev_cluster | jq -r '.state')
+        cluster_status=$(databricks clusters get --cluster-name Small | jq -r '.state')
         if [[ $cluster_status == "RUNNING" ]]; then
           break
         fi
