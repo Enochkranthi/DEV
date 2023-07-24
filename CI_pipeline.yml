@@ -37,7 +37,7 @@ steps:
 
     databricks workspace mkdirs /Repos/Dev
 
-    databricks workspace import_dir . /Repos/your-databricks-repo-name
+    databricks workspace import_dir . /Dev
 
   displayName: 'Create Databricks Repo'
 
