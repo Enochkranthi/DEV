@@ -12,12 +12,6 @@ variables:
 - group: 'DEV'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 - script: pip install databricks-cli
   displayName: 'Install Databricks cli'
@@ -59,7 +53,7 @@ steps:
 - script: |
     
     cluster_id=$(databricks clusters get --cluster-name Small | jq -r '.cluster_id')
-    notebook_path="/Repos/prakashpoorna998@gmail.com/DEV/Data Science/train"
+    notebook_path="/Repos/prakashpoorna998@gmail.com/DEV/DataScience/train"
     databricks jobs configure --version=2.1
     jobId=$(databricks runs submit --json '{
       "existing_cluster_id": "'$cluster_id'",
@@ -69,6 +63,17 @@ steps:
     }' | jq -r '.run_id')
     #echo "##vso[task.setvariable variable=jobId]$jobId"
     echo "Job ID: $jobId"
+  displayName: 'Training the model'
+
+
+- task: AzureCLI@2
+  displayName: 'Registering the model'
+  inputs:
+    azureSubscription: Azure service connection
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) --asset-path Model/model.pkl -d "Regression" --tag "data"="Salary_prediction" --tag "model"="Regression" --model-framework spark
 
 - bash: 'mkdir metadata && mkdir Outputs'
   displayName: 'Make Metadata and Output directory'
@@ -88,4 +93,7 @@ steps:
   displayName: 'Publish Pipeline Artifact'
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
-    artifact: landing
+    artifact: Artifacts
+
+
+
