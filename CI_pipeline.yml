@@ -38,7 +38,11 @@ steps:
     
 - script: |
       json_path=$(Build.SourcesDirectory)/MLOps/dev-cluster.json
-      databricks clusters create --json-file "$json_path"
+      if databricks clusters get --cluster-name Small 2>/dev/null; then
+        echo "Cluster exists"
+      else 
+        databricks clusters create --json-file "$json_path"
+      fi
       cluster_id=$(databricks clusters get --cluster-name Small | jq -r '.cluster_id')
   displayName: 'Create Cluster'
 
