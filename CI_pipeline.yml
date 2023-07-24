@@ -25,13 +25,14 @@ steps:
 
 - script: |
     echo "$(databricksHost)
-    $(PAT)" | databricks configure --token
+    $(DB_PAT)" | databricks configure --token
   displayName: 'configure databricks cli'
 
 - script: databricks workspace ls
   displayName: 'test databricks cli'
 
 - script: |
-
-    databricks repos create --url https://github.com/Enochkranthi/Learn_Azure-Databricks-MLOps.git --provider gitHub --path /Repos/prakashpoorna998@gmail.com/my-repo
+    git clone $(Build.Repository.Uri) -c http.extraheader="Authorization: bearer $(Az_PAT)"
+    cd $(Build.Repository.Name)
+    databricks repos create --provider azureDevOpsServices --url $(Build.Repository.Uri) --path /Repos/DEV_REPO
 
