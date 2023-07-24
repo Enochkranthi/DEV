@@ -80,6 +80,8 @@ steps:
     echo "Job ID: $jobId"
   displayName: 'Training the model'
 
+- bash: 'mkdir metadata'
+  displayName: 'Make Metadata'
 
 - task: AzureCLI@2
   displayName: 'Registering the model'
@@ -88,10 +90,7 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) --model-path Model/model.pkl -d "Regression" --tag "data"="Salary_prediction" --tag "model"="Regression" --model-framework spark
-
-- bash: 'mkdir metadata && mkdir Outputs'
-  displayName: 'Make Metadata and Output directory'
+      az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) -f metadata/run.json --model-path Model/model.pkl -d "Regression" --tag "data"="Salary_prediction" --tag "model"="Regression" --model-framework spark  -t metadata/model.json
 
 
 - task: CopyFiles@2
