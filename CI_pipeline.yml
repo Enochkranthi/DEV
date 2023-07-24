@@ -16,6 +16,21 @@ steps:
 - script: pip install databricks-cli
   displayName: 'Install Databricks cli'
 
+- task: AzureCLI@2
+  displayName: 'Install Azure ML CLI '
+  inputs:
+    azureSubscription: Azure service connection
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: 'az extension add -n azure-cli-ml'
+- task: AzureCLI@2
+  displayName: 'Update Azure ML CLI '
+  inputs:
+    azureSubscription: Azure service connection
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: 'az extension update --name azure-cli-ml'
+    
 - script: |
     echo "$(databricksHost)
     $(DB_PAT)" | databricks configure --token
