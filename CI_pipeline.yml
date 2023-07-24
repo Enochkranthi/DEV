@@ -30,13 +30,6 @@ steps:
 - script: databricks workspace ls
   displayName: 'test databricks cli'
 
-- script: |
-    databricks workspace mkdirs /DEV
-    git clone $(Build.Repository.Uri)
-    cd AzureMLOps
-    for file in $(find . -type f); do
-        relative_path="${file#./}"
-        databricks_path="/DEV/${relative_path}"
-        databricks workspace import "$file" "$databricks_path" -l PYTHON -o
-      done
+- script: databricks repos create --url https://github.com/Enochkranthi/DEV.git --provider gitHub --path /Repos/prakashpoorna998@gmail.com/DEV
+  displayName: 'Importing git repo'
     
