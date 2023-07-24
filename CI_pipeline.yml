@@ -30,6 +30,9 @@ steps:
 - script: databricks workspace ls
   displayName: 'test databricks cli'
 
+- script: databricks repos delete --path /Repos/prakashpoorna998@gmail.com/DEV
+  displayName: 'Deleting old repo'
+
 - script: databricks repos create --url https://github.com/Enochkranthi/DEV.git --provider gitHub --path /Repos/prakashpoorna998@gmail.com/DEV
   displayName: 'Importing git repo'
     
