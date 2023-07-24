@@ -49,3 +49,7 @@ import pickle
 
 filename = '../Model/model.pkl'
 pickle.dump(lr, open(filename, 'wb'))
+
+# COMMAND ----------
+
+pip freeze > requirements.txt
