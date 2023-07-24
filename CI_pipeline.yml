@@ -32,12 +32,10 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
+
+    databricks repos create --provider AzureReposGit --url https://prakashpoorna998@dev.azure.com/prakashpoorna998/AzureMLOps/_git/AzureMLOps --path /Repos/Dev
+
     
-    git clone https://prakashpoorna998@dev.azure.com/prakashpoorna998/AzureMLOps/_git/AzureMLOps
-
-    databricks workspace mkdirs /Repos/Dev
-
-    databricks workspace import_dir . /Repos/Dev
 
   displayName: 'Create Databricks Repo'
 
