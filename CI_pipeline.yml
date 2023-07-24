@@ -25,7 +25,7 @@ steps:
 
 - script: |
     echo "$(databricksHost)
-    $(databricksToken)" | databricks configure --token
+    $(PAT)" | databricks configure --token
   displayName: 'configure databricks cli'
 
 - script: databricks workspace ls
