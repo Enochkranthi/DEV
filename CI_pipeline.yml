@@ -33,3 +33,17 @@ steps:
 - script: databricks repos create --url https://github.com/Enochkranthi/DEV.git --provider gitHub --path /Repos/prakashpoorna998@gmail.com/DEV
   displayName: 'Importing git repo'
     
+- script: |
+      json_path=$(Build.SourcesDirectory)/MLOps/dev-cluster.json
+      databricks clusters create --json-file "$json_path"
+      cluster_id=$(databricks clusters get --cluster-name Dev_cluster | jq -r '.cluster_id')
+  displayName: 'Create Cluster'
+
+- script: |
+      while true; do
+        cluster_status=$(databricks clusters get --cluster-name Dev_cluster | jq -r '.state')
+        if [[ $cluster_status == "RUNNING" ]]; then
+          break
+        fi
+        sleep 10
+      done
