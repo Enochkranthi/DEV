@@ -34,5 +34,9 @@ steps:
     databricks workspace mkdirs /DEV/
     git clone $(Build.Repository.Uri)
     cd AzureMLOps
-    databricks workspace import . /DEV/
+    for file in $(find . -type f); do
+        relative_path="${file#./}"
+        databricks_path="/DEV/${relative_path}"
+        databricks workspace import "$file" "$databricks_path" -o
+      done
     
