@@ -16,7 +16,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
+    az extension add --name databricks
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
@@ -32,6 +32,5 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
-
-    databricks repos create --url $(Build.Repository.Uri) --provider azureDevOpsServices --path /Repos/prakashpoorna998@gmail.com/DEV_REPO
-
+    az databricks repos create --name DEV --path $(Build.Repository.Uri)
+    
