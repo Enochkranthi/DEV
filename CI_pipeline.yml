@@ -30,3 +30,15 @@ steps:
 
 - script: databricks workspace ls
   displayName: 'test databricks cli'
+
+- script: |
+    
+    git clone https://prakashpoorna998@dev.azure.com/prakashpoorna998/AzureMLOps/_git/AzureMLOps
+
+    databricks workspace mkdirs /Repos/Dev
+
+    databricks workspace import_dir . /Repos/your-databricks-repo-name
+
+  displayName: 'Create Databricks Repo'
+
+-  
