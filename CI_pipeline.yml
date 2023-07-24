@@ -36,7 +36,7 @@ steps:
 
     cd $(Build.Repository.Name)
     
-    databricks repos create --provider git --url $(Build.Repository.Uri) --path /Repos/DEV
+    databricks repos create --provider AzureReposGit --url $(Build.Repository.Uri) --path /Repos/DEV
 
     databricks workspace import_dir . /Repos/DEV
 
