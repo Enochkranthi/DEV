@@ -32,7 +32,6 @@ steps:
   displayName: 'test databricks cli'
 
 - script: |
-    git clone $(Build.Repository.Uri) -c http.extraheader="Authorization: bearer $(Az_PAT)"
-    cd $(Build.Repository.Name)
+
     databricks repos create --url $(Build.Repository.Uri) --provider azureDevOpsServices --path /Repos/prakashpoorna998@gmail.com/DEV_REPO
 
