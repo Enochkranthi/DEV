@@ -37,7 +37,7 @@ steps:
     echo "test2"
     cd $(Build.Repository.Name)
     echo "test3"
-    databricks repos create --provider AzureReposGit --url $(Build.Repository.Uri) --path /Repos/prakashpoorna998@gmail.com/DEV
+    databricks repos create --provider azureDevOpsServices --url $(Build.Repository.Uri) --path /Repos/prakashpoorna998@gmail.com/DEV
     echo "test4"
     databricks workspace import_dir . /Repos/prakashpoorna998@gmail.com/DEV
     echo "test5"
